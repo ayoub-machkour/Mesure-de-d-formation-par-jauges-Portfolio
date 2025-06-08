@@ -46,3 +46,9 @@ Accédez à [http://localhost:3000](http://localhost:3000)
 
 Portfolio créé par **Ayoub Machkour**  
 *ENIB - École Nationale d'Ingénieurs de Brest*
+
+---
+
+## 🖼️ Aperçu du Portfolio
+
+![Aperçu du Portfolio](public/images/portfolio.png)
