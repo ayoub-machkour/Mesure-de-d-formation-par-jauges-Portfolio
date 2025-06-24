@@ -3,10 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ObjectivesSection from './components/ObjectivesSection';
+import VideoSection from './components/VideoSection';
 import CircuitSection from './components/CircuitSection';
 import ProgrammingSection from './components/ProgrammingSection';
 import InterfaceSection from './components/InterfaceSection';
 import TeamSection from './components/TeamSection';
+import TheorySection from './components/TheorySection';
+import ConclusionSection from './components/ConclusionSection';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -85,9 +88,12 @@ function App() {
       
       <HeroSection scrollY={scrollY} />
       <ObjectivesSection />
+      <VideoSection />
+      <TheorySection />
       <CircuitSection />
       <ProgrammingSection />
       <InterfaceSection />
+      <ConclusionSection />
       <TeamSection />
       
       <motion.footer 

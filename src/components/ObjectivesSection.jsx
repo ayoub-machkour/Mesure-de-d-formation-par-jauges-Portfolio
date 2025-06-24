@@ -139,31 +139,191 @@ const ObjectivesSection = () => {
           viewport={{ once: true }}
         >
           <h3 className="text-3xl font-bold text-white mb-8 text-center">Schéma Fonctionnel</h3>
-          <div className="flex flex-wrap justify-center items-center gap-6 text-center">
-            {[
-              { text: "Lame + Jauges", icon: "🔧", color: "from-red-500 to-orange-500" },
-              { text: "Pont Wheatstone", icon: "⚡", color: "from-yellow-500 to-amber-500" },
-              { text: "Amplificateur AD623", icon: "📈", color: "from-green-500 to-emerald-500" },
-              { text: "STM32F411", icon: "🖥️", color: "from-blue-500 to-cyan-500" },
-              { text: "Servomoteur", icon: "⚙️", color: "from-purple-500 to-pink-500" },
-              { text: "Interface Web", icon: "🌐", color: "from-pink-500 to-rose-500" }
-            ].map((step, index, array) => (
-              <React.Fragment key={index}>
-                <motion.div 
-                  className="group"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className={`bg-gradient-to-r ${step.color} p-4 rounded-xl text-white font-medium shadow-lg transform transition-all duration-300`}>
-                    <div className="text-2xl mb-2">{step.icon}</div>
-                    <div className="text-sm">{step.text}</div>
-                  </div>
-                </motion.div>
-                {index < array.length - 1 && (
-                  <ArrowRight className="text-cyan-400 text-2xl animate-pulse" />
-                )}
-              </React.Fragment>
-            ))}
+          
+          {/* Nouveau schéma SVG basé sur votre image */}
+          <div className="flex justify-center mb-8">
+            <div className="w-full max-w-6xl">
+              <svg viewBox="0 0 1200 200" className="w-full h-auto">
+                {/* Définitions des gradients */}
+                <defs>
+                  <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ef4444" />
+                    <stop offset="100%" stopColor="#dc2626" />
+                  </linearGradient>
+                  <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#ea580c" />
+                  </linearGradient>
+                  <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#10b981" />
+                    <stop offset="100%" stopColor="#059669" />
+                  </linearGradient>
+                  <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#2563eb" />
+                  </linearGradient>
+                  <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#7c3aed" />
+                  </linearGradient>
+                  <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ec4899" />
+                    <stop offset="100%" stopColor="#db2777" />
+                  </linearGradient>
+                  
+                  {/* Flèches */}
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                         refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#06b6d4"/>
+                  </marker>
+                </defs>
+
+                {/* Boîtes du schéma */}
+                {/* 1. Lame + Jauges */}
+                <g>
+                  <rect x="20" y="60" width="140" height="80" rx="15" fill="url(#redGradient)" />
+                  <text x="90" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    🔧
+                  </text>
+                  <text x="90" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    Lame + Jauges
+                  </text>
+                  <text x="90" y="120" textAnchor="middle" className="fill-white text-xs">
+                    350Ω
+                  </text>
+                </g>
+
+                {/* 2. Pont Wheatstone */}
+                <g>
+                  <rect x="220" y="60" width="140" height="80" rx="15" fill="url(#orangeGradient)" />
+                  <text x="290" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    ⚡
+                  </text>
+                  <text x="290" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    Pont Wheatstone
+                  </text>
+                  <text x="290" y="120" textAnchor="middle" className="fill-white text-xs">
+                    4 jauges
+                  </text>
+                </g>
+
+                {/* 3. Amplificateur AD623 */}
+                <g>
+                  <rect x="420" y="60" width="140" height="80" rx="15" fill="url(#greenGradient)" />
+                  <text x="490" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    📈
+                  </text>
+                  <text x="490" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    Amplificateur AD623
+                  </text>
+                  <text x="490" y="120" textAnchor="middle" className="fill-white text-xs">
+                    Gain ≈ 213
+                  </text>
+                </g>
+
+                {/* 4. STM32F411 */}
+                <g>
+                  <rect x="620" y="60" width="140" height="80" rx="15" fill="url(#blueGradient)" />
+                  <text x="690" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    🖥️
+                  </text>
+                  <text x="690" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    STM32F411
+                  </text>
+                  <text x="690" y="120" textAnchor="middle" className="fill-white text-xs">
+                    ADC 12-bit
+                  </text>
+                </g>
+
+                {/* 5. Servomoteur */}
+                <g>
+                  <rect x="820" y="60" width="140" height="80" rx="15" fill="url(#purpleGradient)" />
+                  <text x="890" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    ⚙️
+                  </text>
+                  <text x="890" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    Servomoteur
+                  </text>
+                  <text x="890" y="120" textAnchor="middle" className="fill-white text-xs">
+                    PWM 50Hz
+                  </text>
+                </g>
+
+                {/* 6. Interface Web */}
+                <g>
+                  <rect x="1020" y="60" width="140" height="80" rx="15" fill="url(#pinkGradient)" />
+                  <text x="1090" y="85" textAnchor="middle" className="fill-white text-sm font-semibold">
+                    🌐
+                  </text>
+                  <text x="1090" y="105" textAnchor="middle" className="fill-white text-xs font-medium">
+                    Interface Web
+                  </text>
+                  <text x="1090" y="120" textAnchor="middle" className="fill-white text-xs">
+                    React.js
+                  </text>
+                </g>
+
+                {/* Flèches de connexion */}
+                <line x1="160" y1="100" x2="220" y2="100" stroke="#06b6d4" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <line x1="360" y1="100" x2="420" y2="100" stroke="#06b6d4" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <line x1="560" y1="100" x2="620" y2="100" stroke="#06b6d4" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <line x1="760" y1="100" x2="820" y2="100" stroke="#06b6d4" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <line x1="960" y1="100" x2="1020" y2="100" stroke="#06b6d4" strokeWidth="3" markerEnd="url(#arrowhead)" />
+
+                {/* Labels des signaux */}
+                <text x="190" y="60" textAnchor="middle" className="fill-cyan-400 text-xs font-medium">
+                  Déformation
+                </text>
+                <text x="390" y="60" textAnchor="middle" className="fill-cyan-400 text-xs font-medium">
+                  R → Vm
+                </text>
+                <text x="590" y="60" textAnchor="middle" className="fill-cyan-400 text-xs font-medium">
+                  Signal amplifié
+                </text>
+                <text x="790" y="60" textAnchor="middle" className="fill-cyan-400 text-xs font-medium">
+                  PWM
+                </text>
+                <text x="990" y="60" textAnchor="middle" className="fill-cyan-400 text-xs font-medium">
+                  Socket.io
+                </text>
+              </svg>
+            </div>
+          </div>
+
+          {/* Description textuelle */}
+          <div className="grid md:grid-cols-3 gap-6 text-center">
+            <motion.div 
+              className="glass-dark p-4 rounded-xl"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4 className="text-cyan-400 font-semibold mb-2">🔄 Chaîne Analogique</h4>
+              <p className="text-gray-300 text-sm">
+                Jauges → Pont → Amplification → Conversion ADC
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              className="glass-dark p-4 rounded-xl"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4 className="text-purple-400 font-semibold mb-2">💻 Traitement Numérique</h4>
+              <p className="text-gray-300 text-sm">
+                STM32 calcule masse, force et génère PWM servo
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              className="glass-dark p-4 rounded-xl"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h4 className="text-pink-400 font-semibold mb-2">🌐 Interface Utilisateur</h4>
+              <p className="text-gray-300 text-sm">
+                Visualisation 3D temps réel et contrôle modes
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -11,6 +11,11 @@ Inclut :
 
 ---
 
+## 🌐 Accès Direct au Site
+
+**Visitez le portfolio en ligne :** [https://ips-groupe-c-deformation-jauge.netlify.app/](https://ips-groupe-c-deformation-jauge.netlify.app/)
+
+---
 ## 🚀 Installation Rapide
 
 ```bash
@@ -36,16 +41,9 @@ Accédez à [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📄 Licence
-
-© 2025 **Groupe 4 - ENIB** | Projet académique IPS  
-
----
-
 ## 🎓 Auteur
 
 Portfolio créé par **Ayoub Machkour**  
-*ENIB - École Nationale d'Ingénieurs de Brest*
 
 ---
 

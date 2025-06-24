@@ -15,9 +15,12 @@ const Navbar = () => {
 
   const navItems = [
     { id: 'objectifs', label: 'Objectifs' },
+    { id: 'demonstration', label: 'Démonstration' },
+    { id: 'theorie', label: 'Théorie' },
     { id: 'circuit', label: 'Circuit' },
     { id: 'programmation', label: 'Programmation' },
     { id: 'interface', label: 'Interface' },
+    { id: 'conclusion', label: 'Conclusion' },
     { id: 'equipe', label: 'Équipe' }
   ];
 

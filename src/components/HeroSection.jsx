@@ -102,13 +102,13 @@ const HeroSection = () => {
               Découvrir le Projet
             </motion.a>
             <motion.a 
-              href="#interface" 
+              href="#demonstration" 
               className="btn-secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Camera className="w-5 h-5" />
-              Voir la Démo
+              Vidéo Démonstrative
             </motion.a>
           </motion.div>
 

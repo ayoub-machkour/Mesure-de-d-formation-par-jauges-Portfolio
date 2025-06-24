@@ -35,7 +35,7 @@ const ProgrammingSection = () => {
           {[
             { id: 'overview', label: 'Architecture', icon: Layers },
             { id: 'mainloop', label: 'Boucle Principale', icon: Code },
-            { id: 'functions', label: 'Fonctions Auxiliaires', icon: Settings }
+            { id: 'functions', label: 'Fonctions Secondaires', icon: Settings }
           ].map((tab) => (
             <motion.button
               key={tab.id}
@@ -258,12 +258,18 @@ const ProgrammingSection = () => {
                   </div>
                 </div>
               </motion.div>
+            </div>
+          )}
 
+          {activeTab === 'functions' && (
+            <div className="space-y-8">
+              <h3 className="text-3xl font-bold text-white mb-6">Fonctions Secondaires</h3>
+              
               <motion.div 
                 className="bg-slate-800/90 backdrop-blur-sm p-8 rounded-2xl border border-purple-500/30"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
                 <h4 className="text-xl font-bold text-purple-400 mb-6">Chaîne de Conversion: Tension → Force → Angle</h4>
@@ -380,105 +386,17 @@ const ProgrammingSection = () => {
               </motion.div>
             </div>
           )}
-
-          {activeTab === 'functions' && (
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-white mb-6">Fonctions Auxiliaires</h3>
-              <motion.div 
-                className="glass-dark p-6 rounded-xl border border-slate-600/50 overflow-x-auto"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <pre className="text-sm leading-relaxed">
-                  <code>
-                    <span className="text-gray-500">// Variables globales</span>
-                    <br />
-                    <span className="text-purple-400">int</span> <span className="text-blue-400">mode</span> <span className="text-white">=</span> <span className="text-yellow-400">1</span><span className="text-white">;</span>                    <span className="text-gray-500">// 1=Manuel, 2=Auto</span>
-                    <br />
-                    <span className="text-purple-400">int</span> <span className="text-blue-400">manualWeight</span> <span className="text-white">=</span> <span className="text-yellow-400">0</span><span className="text-white">;</span>            <span className="text-gray-500">// Poids mode manuel (0-500g)</span>
-                    <br />
-                    <span className="text-purple-400">float</span> <span className="text-blue-400">voltage</span><span className="text-white">,</span> <span className="text-blue-400">masse</span><span className="text-white">,</span> <span className="text-blue-400">force</span><span className="text-white">;</span>     <span className="text-gray-500">// Données capteurs</span>
-                    <br />
-                    <span className="text-purple-400">int</span> <span className="text-blue-400">servoPos</span> <span className="text-white">=</span> <span className="text-yellow-400">180</span><span className="text-white">;</span>              <span className="text-gray-500">// Position servo actuelle</span>
-                    <br />
-                    <br />
-                    <span className="text-gray-500">// Boucle principale</span>
-                    <br />
-                    <span className="text-purple-400">while</span> <span className="text-white">(</span><span className="text-yellow-400">1</span><span className="text-white">) &#123;</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-gray-500">// Lecture ADC avec moyennage</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-blue-400">raw_adc</span> <span className="text-white">=</span> <span className="text-green-400">readADC_Averaged</span><span className="text-white">();</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-blue-400">voltage</span> <span className="text-white">= ((</span><span className="text-purple-400">float</span><span className="text-white">)</span><span className="text-blue-400">raw_adc</span> <span className="text-white">*</span> <span className="text-yellow-400">3.3f</span><span className="text-white">) /</span> <span className="text-yellow-400">4095.0f</span><span className="text-white">;</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-blue-400">masse</span> <span className="text-white">=</span> <span className="text-green-400">calculateMasse</span><span className="text-white">(</span><span className="text-blue-400">voltage</span><span className="text-white">);</span>  <span className="text-gray-500">// S = 188.68</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-blue-400">force</span> <span className="text-white">= (</span><span className="text-blue-400">masse</span> <span className="text-white">*</span> <span className="text-yellow-400">0.001f</span><span className="text-white">) *</span> <span className="text-cyan-400">G</span><span className="text-white">;</span>     <span className="text-gray-500">// G = 9.81</span>
-                    <br />
-                    <br />
-                    <span className="text-white">    </span><span className="text-purple-400">if</span> <span className="text-white">(</span><span className="text-blue-400">mode</span> <span className="text-white">==</span> <span className="text-yellow-400">1</span><span className="text-white">) &#123;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-gray-500">// MODE MANUEL: utiliser manualWeight du slider</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-purple-400">float</span> <span className="text-blue-400">manualForce</span> <span className="text-white">= (</span><span className="text-blue-400">manualWeight</span> <span className="text-white">*</span> <span className="text-yellow-400">0.001f</span><span className="text-white">) *</span> <span className="text-cyan-400">G</span><span className="text-white">;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-purple-400">float</span> <span className="text-blue-400">simulatedVoltage</span> <span className="text-white">= (</span><span className="text-purple-400">float</span><span className="text-white">)</span><span className="text-blue-400">manualWeight</span> <span className="text-white">/</span> <span className="text-yellow-400">188.68f</span><span className="text-white">;</span>
-                    <br />
-                    <br />
-                    <span className="text-white">        </span><span className="text-gray-500">// Données simulées pour IHM</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">v_int</span> <span className="text-white">= (</span><span className="text-purple-400">int</span><span className="text-white">)(</span><span className="text-blue-400">simulatedVoltage</span> <span className="text-white">*</span> <span className="text-yellow-400">1000</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">m_int</span> <span className="text-white">=</span> <span className="text-blue-400">manualWeight</span><span className="text-white">;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">f_int</span> <span className="text-white">= (</span><span className="text-purple-400">int</span><span className="text-white">)(</span><span className="text-blue-400">manualForce</span> <span className="text-white">*</span> <span className="text-yellow-400">1000</span><span className="text-white">);</span>
-                    <br />
-                    <br />
-                    <span className="text-white">    &#125; </span><span className="text-purple-400">else</span> <span className="text-white">&#123;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-gray-500">// MODE AUTO: utiliser données réelles capteur</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">angleAuto</span> <span className="text-white">=</span> <span className="text-green-400">forceToAngle</span><span className="text-white">(</span><span className="text-blue-400">force</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">duty</span> <span className="text-white">=</span> <span className="text-green-400">servo_writeAngle</span><span className="text-white">(</span><span className="text-blue-400">angleAuto</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-cyan-400">TIM2</span><span className="text-white">-&gt;</span><span className="text-cyan-400">CCR2</span> <span className="text-white">= (</span><span className="text-purple-400">uint32_t</span><span className="text-white">)</span><span className="text-blue-400">duty</span><span className="text-white">;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">servoPos</span> <span className="text-white">=</span> <span className="text-blue-400">angleAuto</span><span className="text-white">;</span>
-                    <br />
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">v_int</span> <span className="text-white">= (</span><span className="text-purple-400">int</span><span className="text-white">)(</span><span className="text-blue-400">voltage</span> <span className="text-white">*</span> <span className="text-yellow-400">1000</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">m_int</span> <span className="text-white">= (</span><span className="text-purple-400">int</span><span className="text-white">)</span><span className="text-blue-400">masse</span><span className="text-white">;</span>
-                    <br />
-                    <span className="text-white">        </span><span className="text-blue-400">f_int</span> <span className="text-white">= (</span><span className="text-purple-400">int</span><span className="text-white">)(</span><span className="text-blue-400">force</span> <span className="text-white">*</span> <span className="text-yellow-400">1000</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">    &#125;</span>
-                    <br />
-                    <br />
-                    <span className="text-gray-500">    // Envoi données vers IHM: V:xxx M:xxx F:xxx A:xxx</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-green-400">sprintf</span><span className="text-white">(</span><span className="text-blue-400">msg</span><span className="text-white">,</span> <span className="text-orange-400">"V:%d.%03d\\r\\nM:%d\\r\\nF:%d.%03d\\r\\nA:%d\\r\\n"</span><span className="text-white">,</span>
-                    <br />
-                    <span className="text-white">            </span><span className="text-blue-400">v_int</span><span className="text-white">/</span><span className="text-yellow-400">1000</span><span className="text-white">,</span> <span className="text-blue-400">v_int</span><span className="text-white">%</span><span className="text-yellow-400">1000</span><span className="text-white">,</span> <span className="text-blue-400">m_int</span><span className="text-white">,</span>
-                    <br />
-                    <span className="text-white">            </span><span className="text-blue-400">f_int</span><span className="text-white">/</span><span className="text-yellow-400">1000</span><span className="text-white">,</span> <span className="text-blue-400">f_int</span><span className="text-white">%</span><span className="text-yellow-400">1000</span><span className="text-white">,</span> <span className="text-blue-400">servoPos</span><span className="text-white">);</span>
-                    <br />
-                    <span className="text-white">    </span><span className="text-green-400">HAL_UART_Transmit</span><span className="text-white">(&amp;</span><span className="text-cyan-400">huart2</span><span className="text-white">, (</span><span className="text-purple-400">uint8_t</span><span className="text-white">*)</span><span className="text-blue-400">msg</span><span className="text-white">, </span><span className="text-green-400">strlen</span><span className="text-white">(</span><span className="text-blue-400">msg</span><span className="text-white">), </span><span className="text-cyan-400">HAL_MAX_DELAY</span><span className="text-white">);</span>
-                    <br />
-                    <br />
-                    <span className="text-white">    </span><span className="text-green-400">HAL_Delay</span><span className="text-white">(</span><span className="text-blue-400">mode</span> <span className="text-white">==</span> <span className="text-yellow-400">1</span> <span className="text-white">?</span> <span className="text-yellow-400">1000</span> <span className="text-white">:</span> <span className="text-yellow-400">500</span><span className="text-white">);</span>  <span className="text-gray-500">// 1s manuel, 0.5s auto</span>
-                    <br />
-                    <span className="text-white">&#125;</span>
-                  </code>
-                </pre>
-              </motion.div>
-            </div>
-          )}
         </motion.div>
+
+        <style jsx>{`
+          .card {
+            @apply bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-2xl;
+          }
+          
+          .glass-dark {
+            @apply bg-slate-800/30 backdrop-blur-sm border border-slate-600/20;
+          }
+        `}</style>
       </div>
     </section>
   );
