@@ -13,7 +13,7 @@ Inclut :
 
 ## 🌐 Accès Direct au Site
 
-**Visitez le portfolio en ligne :** [https://ips-groupe-c-deformation-jauge.netlify.app/](https://ips-groupe-c-deformation-jauge.netlify.app/)
+**Visitez le portfolio en ligne :** [[https://ips-groupe-c-deformation-jauge.netlify.app/](https://deformation-jauge-s7.netlify.app/)]([https://ips-groupe-c-deformation-jauge.netlify.app/](https://deformation-jauge-s7.netlify.app/))
 
 ---
 ## 🚀 Installation Rapide
